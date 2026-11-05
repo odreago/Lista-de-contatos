@@ -2,6 +2,7 @@ import { useState } from "react"
 import type { FormEvent } from "react"
 import { useDispatch } from "react-redux"
 import { adicionar } from "../../store/reducers/contatos"
+import * as S from './styled'
 
 const Formulario = () => {
   const dispatch = useDispatch()
@@ -18,24 +19,24 @@ const Formulario = () => {
   }
 
   return (
-    <form onSubmit={Cadastrar}>
-      <input type="text"
+    <S.Form onSubmit={Cadastrar}>
+      <S.Campo type="text"
       value={nome}
       onChange={(e) => setNome(e.target.value)}
       placeholder="Nome do contato"
       required/>
-      <input type="email"
+      <S.Campo type="email"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       placeholder="Email"
       required/>
-      <input type="tel"
+      <S.Campo type="tel"
       value={telefone}
       onChange={(e) => setTelefone(e.target.value)}
       placeholder="Telefone"
       required/>
-      <button type="submit">Adicionar</button>
-    </form>
+      <S.Botao type="submit">Adicionar</S.Botao>
+    </S.Form>
   )
 }
 

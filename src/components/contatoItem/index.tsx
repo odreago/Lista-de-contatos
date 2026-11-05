@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import type { Contato } from "../../models/Contato"
 import { editar, remover } from "../../store/reducers/contatos"
+import * as S from './styled'
 
 type Props = Contato
 
@@ -35,33 +36,43 @@ const ContatoItem = ({ id, nome, email, telefone}: Props) => {
     <li>
       {estaEditando ? (
         <>
-          <input
+
+          <S.Card>
+
+          <S.CampoEdicao
           value={nomeEditando}
           onChange={(e) => setNomeEditando(e.target.value)}/>
-          <input
+          <S.CampoEdicao
           value={emailEditando}
           onChange={(e) => setEmailEditando(e.target.value)}/>
-          <input
+          <S.CampoEdicao
           value={telefoneEditando}
           onChange={(e) => setTelefoneEditando(e.target.value)} />
-          <button type="button" onClick={salvar}>
+          <S.Espaco>
+          <S.BotaoSalvar type="button" onClick={salvar}>
             Salvar
-          </button>
-          <button type="button" onClick={cancelar}>
+          </S.BotaoSalvar>
+          <S.BotaoVermelho type="button" onClick={cancelar}>
             Cancelar
-          </button>
+          </S.BotaoVermelho>
+          </S.Espaco>
+          </S.Card>
         </>
       ) : (
         <>
+          <S.Card>
           <strong>{nome}</strong>
-          <span>{email}</span>
-          <span>{telefone}</span>
-          <button type="button" onClick={() => setEstaEditando(true)}>
+          <S.Inform>{email}</S.Inform>
+          <S.Inform>{telefone}</S.Inform>
+          <S.Acoes>
+          <S.BotaoEditar type="button" onClick={() => setEstaEditando(true)}>
             Editar
-          </button>
-          <button type="button" onClick={() => dispatch(remover(id))}>
+          </S.BotaoEditar>
+          <S.BotaoVermelho type="button" onClick={() => dispatch(remover(id))}>
             Remover
-          </button>
+          </S.BotaoVermelho>
+          </S.Acoes>
+          </S.Card>
         </>
       )}
     </li>
