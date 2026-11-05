@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import type { RootState } from "../../store"
+import ContatoItem from "../contatoItem"
 
 const ListaDeContatos = () => {
   const contatos = useSelector((state: RootState) => state.contatos.itens)
@@ -9,11 +10,7 @@ const ListaDeContatos = () => {
   return (
     <ul>
       {contatos.map((contato) => (
-        <li key={contato.id}>
-          <strong>{contato.nome}</strong>
-          <span>{contato.email}</span>
-          <span>{contato.telefone}</span>
-        </li>
+          <ContatoItem key={contato.id} {...contato} />
       ))}
     </ul>
   )
